@@ -1,0 +1,7 @@
+#overlay{
+  position : fixed;
+  bottom : 100px;
+  right : 100px;
+  width : 50px;
+  height : 30px;
+}

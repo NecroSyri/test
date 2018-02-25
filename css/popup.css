@@ -1,0 +1,185 @@
+/* size 58 x 41 cm */
+/* screen 32 x 16 px */
+/* 32 64 96 */
+/* 16 32 48 */
+/* 1pxmon = 4px menu */
+/* max = 580x580 icon = 80x80 mon = 290x290*/
+/* reso = 576x576-36*16 80x80-5*16 288x288-18*16 256? */
+#resize {
+	width: 8px;
+	height: 8px;
+	background: url("../img/resize.png") #BBB;
+	bottom: 0px;
+	left: 0px;
+	position: absolute;
+}
+
+.opa {
+	opacity: 0.1;
+}
+
+.opa .inscreen {
+	opacity: 0.6;
+}
+
+.js_username {
+	z-index: 1;
+	text-decoration: none;
+	color: black;
+}
+
+#statsZone {
+	position: absolute;
+	width: 100%;
+	top: 100%;
+	font-size: 12px;
+	text-align: right;
+}
+
+#date {
+	z-index: 1;
+}
+
+#testMessage {
+	z-index: 1;
+}
+
+#screen {
+	position: absolute;
+	background: url("../img/background.png") no-repeat;
+	background-size: 100%;
+}
+
+.menu {
+	position: absolute;
+	display: flex;
+	width: 100%;
+	height: 25%;
+}
+
+.inscreen {
+	position: absolute;
+	width: 100%;
+	height: 50%;
+	top: 25%;
+}
+
+.inscreen.bg {
+	background: rgba(0, 0, 0, 0.2);
+}
+
+.menu div {
+	margin: auto;
+	float: left;
+	text-align: center;
+	opacity: 0.4;
+	width: 25%;
+	height: 100%;
+	margin: 0 3% 0 3%;
+}
+
+.menu .selected {
+	background: rgba(255, 255, 255, 0.2);
+	opacity: 1;
+}
+
+.menu.bottom {
+	top: 75%;
+}
+
+.button {
+	position: absolute;
+	background: rgba(255, 255, 255, 0.1);
+}
+
+body {
+	background: #ccc;
+	font-size: 8px;
+}
+/* menu icons */
+#stats {
+	background: url("../img/stats1.png") no-repeat center;
+	background-size: 100%;
+}
+
+#food {
+	background: url("../img/food1.png") no-repeat center;
+	background-size: 100%;
+}
+
+#train {
+	background: url("../img/train1.png") no-repeat center;
+	background-size: 100%;
+}
+
+#battle {
+	background: url("../img/battle1.png") no-repeat center;
+	background-size: 100%;
+}
+
+#clean {
+	background: url("../img/clean1.png") no-repeat center;
+	background-size: 100%;
+}
+
+#light {
+	background: url("../img/light1.png") no-repeat center;
+	background-size: 100%;
+}
+
+#heal {
+	background: url("../img/heal1.png") no-repeat center;
+	background-size: 100%;
+}
+
+#album {
+	background: url("../img/album1.png") no-repeat center;
+	background-size: 100%;
+}
+
+#connection {
+	background: url("../img/connect1.png") no-repeat center;
+	background-size: 100%;
+}
+
+#call {
+	background: url("../img/call1.png") no-repeat center;
+	background-size: 100%;
+}
+
+/* display */
+#mon {
+	height: 100%;
+	width: 50%;
+	left: 25%;
+	position: absolute;
+}
+
+#leftArrow {
+	background: url("../img/left.png");
+	background-size: 100%;
+	left: 0%;
+	height: 50%;
+	bottom: 0%;
+	position: absolute;
+	width: 25%;
+}
+
+#rightArrow {
+	background: url("../img/right.png");
+	background-size: 100%;
+	right: 0%;
+	height: 50%;
+	bottom: 0%;
+	position: absolute;
+	width: 25%;
+}
+
+.flip {
+	-moz-transform: scaleX(-1);
+	-o-transform: scaleX(-1);
+	-webkit-transform: scaleX(-1);
+	transform: scaleX(-1);
+	filter: FlipH;
+	-ms-filter: "FlipH";
+}
