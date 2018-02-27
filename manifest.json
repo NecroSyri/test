@@ -1,6 +1,6 @@
 {
-  "name": "DigiApp",
-  "description": "Raise a discret digipet in your browser.",
+  "name": "Test",
+  "description": "Just a test",
   "version": "0.1",
   "manifest_version": 2,
   "icons": {
@@ -10,22 +10,21 @@
   },
   "browser_action": {
     "default_icon": "img/ico/16-w.png",
-    "default_title":"DigiApp options",
+    "default_title":"Test",
     "default_popup": "pages/popup.html"
   },
   "commands": {
-    "toggle-digivice": {
+    "toggle-popin": {
       "suggested_key": {
         "default": "Ctrl+Space"
       },
-      "description": "Show or hide digivice"
+      "description": "Show or hide"
     }
   },
   "background": {
     "page": "pages/background.html",
     "matches": [ "http://*/*", "https://*/*"]
   },
-  "options_page" : "pages/options.html",
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
   "permissions": [
     "activeTab",
