@@ -11,4 +11,7 @@ chrome.commands.onCommand.addListener(function(command) {
 
 function togglePopin(){
 	//alert("toggle");
+	chrome.tabs.executeScript({
+    code: "script.js"
+  });
 }
