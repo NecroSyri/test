@@ -9,9 +9,15 @@ chrome.commands.onCommand.addListener(function(command) {
 	}
 });
 
+chrome.tabs.onActivated.addListener(function(obj){
+	if($("#popin").length>=1){
+	  $("#popin").remove();
+		alert("change");
+	}
+});
+
 function togglePopin(){
-	//alert("toggle");
-	chrome.tabs.executeScript({
-    code: "script.js"
-  });
+	chrome.tabs.executeScript(null,{file: "js/jquery-3.2.1.min.js"});
+	chrome.tabs.insertCSS(null,{file: 'css/popin.css'});
+	chrome.tabs.executeScript(null,{file: "js/popin.js"});
 }
