@@ -4,5 +4,16 @@
   right : 1%;
   height : 50px;
   width : 100px;
-  background : #cccccc;
+  border : #000000 1px solid;
+}
+
+.popin__button{
+  background : #ccc;
+  width:5px;
+  height:5px;
+}
+
+.popin__screen{
+  width:80%;
+  height:80%;
 }

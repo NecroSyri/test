@@ -26,9 +26,13 @@ function togglePopin(tabid){
 		popinTab = currentTab;
 		chrome.tabs.executeScript(null,{file: "js/jquery-3.2.1.min.js"});
 		chrome.tabs.insertCSS(null,{file: 'css/popin.css'});
-		chrome.tabs.executeScript(null,{file: "js/popin.js"});
+		chrome.tabs.executeScript(tabid,{code:"var closePopin=false;"},function(){
+			chrome.tabs.executeScript(tabid,{file: "js/popin.js"});
+		});
 	}else{
-		chrome.tabs.executeScript(tabid,{file: "js/popin.js"});
+		chrome.tabs.executeScript(tabid,{code:"var closePopin=true;"},function(){
+			chrome.tabs.executeScript(tabid,{file: "js/popin.js"});
+		});
 		popinTab=null;
 	}
 }
