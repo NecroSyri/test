@@ -22,11 +22,13 @@ chrome.tabs.onActivated.addListener(function(obj){
 });
 
 function togglePopin(tabid){
+	var popinPath = chrome.runtime.getURL("pages/popin.html");
+
 	if(tabid == null || tabid == undefined){
 		popinTab = currentTab;
 		chrome.tabs.executeScript(null,{file: "js/jquery-3.2.1.min.js"});
 		chrome.tabs.insertCSS(null,{file: 'css/popin.css'});
-		chrome.tabs.executeScript(tabid,{code:"var closePopin=false;"},function(){
+		chrome.tabs.executeScript(tabid,{code:"var closePopin=false;var popinPath=\""+popinPath+"\";"},function(){
 			chrome.tabs.executeScript(tabid,{file: "js/popin.js"});
 		});
 	}else{
