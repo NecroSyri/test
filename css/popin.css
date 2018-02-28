@@ -7,10 +7,18 @@
   border : #000000 1px solid;
 }
 
+.popin__background{
+  background : #fff;
+  width:100%;
+  height:100%;
+}
+
 .popin__button{
   background : #ccc;
-  width:5px;
-  height:5px;
+  float:right;
+  margin:5px;
+  width:10px;
+  height:10px;
 }
 
 .popin__screen{
