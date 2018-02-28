@@ -1,3 +1,8 @@
+//GLOBAL
+var currentTab;
+var popinTab;
+
+
 chrome.commands.onCommand.addListener(function(command) {
 	switch(command){
 		case "toggle-popin":
@@ -10,14 +15,20 @@ chrome.commands.onCommand.addListener(function(command) {
 });
 
 chrome.tabs.onActivated.addListener(function(obj){
-	if($("#popin").length>=1){
-	  $("#popin").remove();
-		alert("change");
+	currentTab = obj.tabId;
+	if(popinTab != null && popinTab != undefined){
+		 togglePopin(popinTab);
 	}
 });
 
-function togglePopin(){
-	chrome.tabs.executeScript(null,{file: "js/jquery-3.2.1.min.js"});
-	chrome.tabs.insertCSS(null,{file: 'css/popin.css'});
-	chrome.tabs.executeScript(null,{file: "js/popin.js"});
+function togglePopin(tabid){
+	if(tabid == null || tabid == undefined){
+		popinTab = currentTab;
+		chrome.tabs.executeScript(null,{file: "js/jquery-3.2.1.min.js"});
+		chrome.tabs.insertCSS(null,{file: 'css/popin.css'});
+		chrome.tabs.executeScript(null,{file: "js/popin.js"});
+	}else{
+		chrome.tabs.executeScript(tabid,{file: "js/popin.js"});
+		popinTab=null;
+	}
 }
