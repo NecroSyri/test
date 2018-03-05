@@ -1,4 +1,5 @@
 #popin{
+  z-index:9999;
   position : fixed;
   bottom : 1%;
   right : 1%;
@@ -31,21 +32,22 @@
   width:5px;
   height:5px;
   position: absolute;
+  display:none;
 }
 
 .popin__resizer--tl{
-  top:-2px;
-  left:-2px;
+  top:-3px;
+  left:-3px;
 }
 .popin__resizer--tr{
-  top:-2px;
-  right:-2px;
+  top:-3px;
+  right:-3px;
 }
 .popin__resizer--bl{
-  bottom:-2px;
-  left:-2px;
+  bottom:-3px;
+  left:-3px;
 }
 .popin__resizer--br{
-  bottom:-2px;
-  right:-2px;
+  bottom:-3px;
+  right:-3px;
 }
