@@ -32,8 +32,8 @@ function endEvents(){
 
 function mouseMove(){
   if(move){
-    $("#popin").css("left",mouse.x);;
-    $("#popin").css("top",mouse.y);
+    $("#popin").css("left",mouse.x-$(".popin__button--move").position().left-$(".popin__button").css("margin").replace("px","")-($(".popin__button--move").css("width").replace("px","")/2));
+    $("#popin").css("top",mouse.y-$(".popin__button--move").position().top-$(".popin__button").css("margin").replace("px","")-($(".popin__button--move").css("height").replace("px","")/2));
   }
 }
 
