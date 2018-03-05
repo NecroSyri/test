@@ -1,6 +1,7 @@
 var mouse={};
 var resize=false;
 var move=false;
+var resize="";
 
 if($("#popin").length<1 && !closePopin){
   $("body").append("<div id='popin'></div>");
@@ -11,7 +12,12 @@ if($("#popin").length<1 && !closePopin){
 
 function main(){
   $(".popin__button--close").on("click",function(){$("#popin").remove();});
-  $(".popin__button--move").on("mousedown",function(){startMove()});
+  $(".popin__button--move").on("mousedown",function(){move=true;});
+  $(".popin__button--resize").on("mousedown",function(){toggleResize()});
+  $(".popin__resizer--tl").on("mousedown",function(){resize="tl";});
+  $(".popin__resizer--tr").on("mousedown",function(){resize="tr";});
+  $(".popin__resizer--bl").on("mousedown",function(){resize="bl";});
+  $(".popin__resizer--br").on("mousedown",function(){resize="br";});
   $(document).on("mouseup",function(){endEvents()});
   $(document).mousemove(function(event){
 		mouse.x=event.pageX;
@@ -20,13 +26,24 @@ function main(){
 	});
 }
 
-function startMove(){
-  move=true;
-}
-
 function endEvents(){
   if(move){
     move=false;
+  }
+  if(resize!=""){
+    resize="";
+  }
+}
+
+function toggleResize(){
+  if($(".popin__resizer").css("display")=="none"){
+    //not resize
+    $(".popin__resizer").show();
+    $("#popin").css("border-color","#08f");
+  }else{
+    //resize
+    $(".popin__resizer").hide();
+    $("#popin").css("border-color","#000");
   }
 }
 
@@ -34,6 +51,22 @@ function mouseMove(){
   if(move){
     $("#popin").css("left",mouse.x-($(".popin__button--move").css("width").replace("px","")/2)-$(".popin__button--move").position().left-$(".popin__button").css("margin").replace("px",""));
     $("#popin").css("top",mouse.y-$(window).scrollTop()-($(".popin__button--move").css("height").replace("px","")/2)-$(".popin__button--move").position().top-$(".popin__button").css("margin").replace("px",""));
+  }
+  if(resize!=""){
+    switch(resize){
+      case "tl":
+        $("#popin").css("left",mouse.x);
+        $("#popin").css("top",mouse.y-$(window).scrollTop());
+        $("#popin").css("right",$("#popin").css("right"));
+        $("#popin").css("bottom",$("#popin").css("bottom"));
+      break;
+      case "tr":
+      break;
+      case "bl":
+      break;
+      case "br":
+      break;
+    }
   }
 }
 
