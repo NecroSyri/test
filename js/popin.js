@@ -2,6 +2,7 @@ var mouse={};
 var resize=false;
 var move=false;
 var resize="";
+var popinSize={};
 
 if($("#popin").length<1 && !closePopin){
   $("body").append("<div id='popin'></div>");
@@ -11,6 +12,13 @@ if($("#popin").length<1 && !closePopin){
 }
 
 function main(){
+  popinSize.width=$("#popin").width();
+  popinSize.height=$("#popin").height();
+  popinSize.left=parseInt($("#popin").css("left").replace("px",""));
+  popinSize.right=parseInt($("#popin").css("right").replace("px",""));
+  popinSize.top=parseInt($("#popin").css("top").replace("px",""));
+  popinSize.bottom=parseInt($("#popin").css("bottom").replace("px",""));
+
   $(".popin__button--close").on("click",function(){$("#popin").remove();});
   $(".popin__button--move").on("mousedown",function(){move=true;});
   $(".popin__button--resize").on("mousedown",function(){toggleResize()});
@@ -49,16 +57,23 @@ function toggleResize(){
 
 function mouseMove(){
   if(move){
-    $("#popin").css("left",mouse.x-($(".popin__button--move").css("width").replace("px","")/2)-$(".popin__button--move").position().left-$(".popin__button").css("margin").replace("px",""));
-    $("#popin").css("top",mouse.y-$(window).scrollTop()-($(".popin__button--move").css("height").replace("px","")/2)-$(".popin__button--move").position().top-$(".popin__button").css("margin").replace("px",""));
+    $("#popin").css("width","unset");
+    $("#popin").css("height","unset");
+    var buttonWidthHalf = $(".popin__button--move").css("width").replace("px","")/2;
+    var buttonHeighthHalf = $(".popin__button--move").css("height").replace("px","")/2;
+    var buttonLeft = $(".popin__button--move").position().left;
+    var buttonTop = $(".popin__button--move").position().top;
+    var buttonMargin = $(".popin__button").css("margin").replace("px","");
+    $("#popin").css("left",mouse.x-buttonWidthHalf-buttonLeft-buttonMargin);
+    $("#popin").css("top",mouse.y-$(window).scrollTop()-buttonHeighthHalf-buttonTop-buttonMargin);
   }
   if(resize!=""){
     switch(resize){
       case "tl":
-        $("#popin").css("left",mouse.x);
-        $("#popin").css("top",mouse.y-$(window).scrollTop());
-        $("#popin").css("right",$("#popin").css("right"));
-        $("#popin").css("bottom",$("#popin").css("bottom"));
+        $("#popin").css("width","unset");
+        $("#popin").css("height","unset");
+        $("#popin").css("left",mouse.x+"px");
+        $("#popin").css("top",(mouse.y-$(window).scrollTop())+"px");
       break;
       case "tr":
       break;
