@@ -23,7 +23,7 @@ function main(){
   $(".popin__button--close").on("click",function(){$("#popin").remove();});
   //$(".popin__button--move").on("mousedown",function(){move=true;$("#popin").draggable("enable");});
   $(".popin__button--move").on("mousedown",function(){dragOn();});
-  //$(".popin__button--resize").on("mousedown",function(){toggleResize()});
+  $(".popin__button--resize").on("mousedown",function(){toggleResize()});
   //$(".popin__resizer--tl").on("mousedown",function(){resize="tl";});
   //$(".popin__resizer--tr").on("mousedown",function(){resize="tr";});
   //$(".popin__resizer--bl").on("mousedown",function(){resize="bl";});
@@ -36,16 +36,13 @@ function dragOn(){
   $("#popin").draggable("enable");
 }
 function dragOff(){
-  console.log("off");
+  move=false;
   $("#popin").draggable("disable");
 }
 
 function endEvents(){
   if(move){
     dragOff();
-  }
-  if(resize!=""){
-    resize="";
   }
 }
 
@@ -60,7 +57,7 @@ function toggleResize(){
     $("#popin").css("border-color","#000");
   }
 }
-
+/*
 function mouseMove(){
   if(move){
 	debugPos();
@@ -138,3 +135,5 @@ function resizeOff(){
 		bg.save();
 	}
 }
+
+*/
