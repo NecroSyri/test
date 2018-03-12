@@ -18,6 +18,8 @@ function main(){
   popinSize.right=parseInt($("#popin").css("right").replace("px",""));
   popinSize.top=parseInt($("#popin").css("top").replace("px",""));
   popinSize.bottom=parseInt($("#popin").css("bottom").replace("px",""));
+  
+  debugPos(); 
 
   $(".popin__button--close").on("click",function(){$("#popin").remove();});
   $(".popin__button--move").on("mousedown",function(){move=true;});
@@ -57,6 +59,8 @@ function toggleResize(){
 
 function mouseMove(){
   if(move){
+	debugPos();  
+	  
     $("#popin").css("width","unset");
     $("#popin").css("height","unset");
     var buttonWidthHalf = $(".popin__button--move").css("width").replace("px","")/2;
@@ -64,12 +68,21 @@ function mouseMove(){
     var buttonLeft = $(".popin__button--move").position().left;
     var buttonTop = $(".popin__button--move").position().top;
     var buttonMargin = $(".popin__button").css("margin").replace("px","");
-    $("#popin").css("left",mouse.x-buttonWidthHalf-buttonLeft-buttonMargin);
-    $("#popin").css("top",mouse.y-$(window).scrollTop()-buttonHeighthHalf-buttonTop-buttonMargin);
+    
+    popinSize.left = mouse.x-buttonWidthHalf-buttonLeft-buttonMargin;
+    popinSize.top = mouse.y-$(window).scrollTop()-buttonHeighthHalf-buttonTop-buttonMargin;
+    popinSize.right = $("body").width() - (popinSize.left + popinSize.width) - 20;
+    popinSize.bottom = $("body").height() - (popinSize.top + popinSize.height) + 20;
+    
+    $("#popin").css("left",popinSize.left);
+    $("#popin").css("top",popinSize.top);
+    $("#popin").css("right",popinSize.right);
+    $("#popin").css("bottom",popinSize.bottom);
   }
   if(resize!=""){
     switch(resize){
       case "tl":
+    	debugPos(); 
         $("#popin").css("width","unset");
         $("#popin").css("height","unset");
         $("#popin").css("left",mouse.x+"px");
@@ -120,4 +133,11 @@ function resizeOff(){
 		}
 		bg.save();
 	}
+}
+
+function debugPos(){
+	m=mouse;
+	p=popinSize;
+	console.clear();
+	console.log("x:"+m.x+" / y:"+m.y+" / w:"+p.width+" / h:"+p.height+" / l:"+p.left+" / r:"+p.right+" / t:"+p.top+" / b:"+p.bottom);
 }
