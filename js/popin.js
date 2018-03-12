@@ -51,10 +51,18 @@ function toggleResize(){
     //not resize
     $(".popin__resizer").show();
     $("#popin").css("border-color","#08f");
+    $( "#popin" ).resizable({
+      handles: "ne, nw, se, sw",
+      disabled:false
+    });
   }else{
     //resize
     $(".popin__resizer").hide();
     $("#popin").css("border-color","#000");
+    $( "#popin" ).resizable({
+      handles: "",
+      disabled: "true"
+    });
   }
 }
 /*

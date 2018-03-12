@@ -18,9 +18,7 @@
 .popin__button:hover{
   cursor:pointer;
 }
-.popin__resizer:hover{
-  cursor: crosshair;
-}
+
 .popin__button--move:hover{
   cursor:move;
 }
