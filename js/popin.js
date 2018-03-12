@@ -18,27 +18,31 @@ function main(){
   popinSize.right=parseInt($("#popin").css("right").replace("px",""));
   popinSize.top=parseInt($("#popin").css("top").replace("px",""));
   popinSize.bottom=parseInt($("#popin").css("bottom").replace("px",""));
-  
-  debugPos(); 
 
+  $("#popin").draggable({disabled: true});
   $(".popin__button--close").on("click",function(){$("#popin").remove();});
-  $(".popin__button--move").on("mousedown",function(){move=true;});
-  $(".popin__button--resize").on("mousedown",function(){toggleResize()});
-  $(".popin__resizer--tl").on("mousedown",function(){resize="tl";});
-  $(".popin__resizer--tr").on("mousedown",function(){resize="tr";});
-  $(".popin__resizer--bl").on("mousedown",function(){resize="bl";});
-  $(".popin__resizer--br").on("mousedown",function(){resize="br";});
+  //$(".popin__button--move").on("mousedown",function(){move=true;$("#popin").draggable("enable");});
+  $(".popin__button--move").on("mousedown",function(){dragOn();});
+  //$(".popin__button--resize").on("mousedown",function(){toggleResize()});
+  //$(".popin__resizer--tl").on("mousedown",function(){resize="tl";});
+  //$(".popin__resizer--tr").on("mousedown",function(){resize="tr";});
+  //$(".popin__resizer--bl").on("mousedown",function(){resize="bl";});
+  //$(".popin__resizer--br").on("mousedown",function(){resize="br";});
   $(document).on("mouseup",function(){endEvents()});
-  $(document).mousemove(function(event){
-		mouse.x=event.pageX;
-		mouse.y=event.pageY;
-		mouseMove();
-	});
+}
+
+function dragOn(){
+  move=true;
+  $("#popin").draggable("enable");
+}
+function dragOff(){
+  console.log("off");
+  $("#popin").draggable("disable");
 }
 
 function endEvents(){
   if(move){
-    move=false;
+    dragOff();
   }
   if(resize!=""){
     resize="";
@@ -59,8 +63,8 @@ function toggleResize(){
 
 function mouseMove(){
   if(move){
-	debugPos();  
-	  
+	debugPos();
+
     $("#popin").css("width","unset");
     $("#popin").css("height","unset");
     var buttonWidthHalf = $(".popin__button--move").css("width").replace("px","")/2;
@@ -68,12 +72,12 @@ function mouseMove(){
     var buttonLeft = $(".popin__button--move").position().left;
     var buttonTop = $(".popin__button--move").position().top;
     var buttonMargin = $(".popin__button").css("margin").replace("px","");
-    
+
     popinSize.left = mouse.x-buttonWidthHalf-buttonLeft-buttonMargin;
     popinSize.top = mouse.y-$(window).scrollTop()-buttonHeighthHalf-buttonTop-buttonMargin;
     popinSize.right = $("body").width() - (popinSize.left + popinSize.width) - 20;
     popinSize.bottom = $("body").height() - (popinSize.top + popinSize.height) + 20;
-    
+
     $("#popin").css("left",popinSize.left);
     $("#popin").css("top",popinSize.top);
     $("#popin").css("right",popinSize.right);
@@ -82,7 +86,7 @@ function mouseMove(){
   if(resize!=""){
     switch(resize){
       case "tl":
-    	debugPos(); 
+    	debugPos();
         $("#popin").css("width","unset");
         $("#popin").css("height","unset");
         $("#popin").css("left",mouse.x+"px");
@@ -133,11 +137,4 @@ function resizeOff(){
 		}
 		bg.save();
 	}
-}
-
-function debugPos(){
-	m=mouse;
-	p=popinSize;
-	console.clear();
-	console.log("x:"+m.x+" / y:"+m.y+" / w:"+p.width+" / h:"+p.height+" / l:"+p.left+" / r:"+p.right+" / t:"+p.top+" / b:"+p.bottom);
 }

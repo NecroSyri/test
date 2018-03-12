@@ -27,6 +27,7 @@ function togglePopin(tabid){
 		popinTab = currentTab;
 		if(injected[currentTab]!=true){
 			chrome.tabs.executeScript(null,{file: "js/jquery-3.2.1.min.js"});
+			chrome.tabs.executeScript(null,{file: "js/jquery-ui.min.js"});
 			chrome.tabs.insertCSS(null,{file: 'css/popin.css'});
 			injected[currentTab]=true;
 		}
