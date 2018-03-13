@@ -40,7 +40,6 @@ background: url("chrome-extension://__MSG_@@extension_id__/img/right.png");
 .popin__screen{
   width:80%;
   height:80%;
-  /* background: url("chrome-extension://__MSG_@@extension_id__/img/right.png"); */
 }
 
 .popin__resizer{
