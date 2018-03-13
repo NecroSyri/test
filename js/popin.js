@@ -53,6 +53,10 @@ function toggleResize(){
     $("#popin").css("border-color","#08f");
     $( "#popin" ).resizable({
       handles: "ne, nw, se, sw",
+      minHeight : 50,
+      minWidth : 100,
+      aspectRatio : true,
+      autoHide : true,
       disabled:false
     });
   }else{

@@ -1,3 +1,9 @@
+/*
+Include images :
+background: url("chrome-extension://__MSG_@@extension_id__/img/right.png");
+
+*/
+
 #popin{
   z-index:9999;
   position : fixed;
@@ -34,6 +40,7 @@
 .popin__screen{
   width:80%;
   height:80%;
+  /* background: url("chrome-extension://__MSG_@@extension_id__/img/right.png"); */
 }
 
 .popin__resizer{
