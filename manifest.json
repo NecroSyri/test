@@ -1,6 +1,6 @@
 {
-  "name": "Test",
-  "description": "Just a test",
+  "name": "Dice",
+  "description": "Dice",
   "version": "0.1",
   "manifest_version": 2,
   "icons": {
