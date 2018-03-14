@@ -12,6 +12,8 @@ if($("#popin").length<1 && !closePopin){
 }
 
 function main(){
+  
+
   popinSize.width=$("#popin").width();
   popinSize.height=$("#popin").height();
   popinSize.left=parseInt($("#popin").css("left").replace("px",""));

@@ -21,14 +21,26 @@ chrome.tabs.onActivated.addListener(function(obj){
 	}
 });
 
+chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
+    switch(message){
+			case "jquery":
+				injectJquery();
+			break;
+			case "jqueryui":
+				injectJqueryui();
+			break;
+			default:
+				console.log(message+" - "+sender+" - "+sendResponse);
+			break;
+		}
+});
+
 function togglePopin(tabid){
 	var popinPath = chrome.runtime.getURL("pages/popin.html");
 	if(tabid == null || tabid == undefined){
 		popinTab = currentTab;
 		if(injected[currentTab]!=true){
-			chrome.tabs.executeScript(null,{file: "js/jquery-3.2.1.min.js"});
-			chrome.tabs.executeScript(null,{file: "js/jquery-ui.min.js"});
-			chrome.tabs.insertCSS(null,{file: 'css/jquery-ui.min.css'});
+			chrome.tabs.executeScript(null,{file:"js/testJquery.js"});
 			chrome.tabs.insertCSS(null,{file: 'css/popin.css'});
 			injected[currentTab]=true;
 		}
@@ -41,4 +53,16 @@ function togglePopin(tabid){
 		});
 		popinTab=null;
 	}
+}
+
+function injectJquery(){
+	console.log("injected");
+	chrome.tabs.executeScript(null,{file: "js/jquery-3.2.1.min.js"},function(){
+		chrome.tabs.executeScript(null,{file:"js/testJquery.js"});
+	});
+}
+
+function injectJqueryui(){
+	chrome.tabs.executeScript(null,{file: "js/jquery-ui.min.js"});
+	chrome.tabs.insertCSS(null,{file: 'css/jquery-ui.min.css'});
 }
