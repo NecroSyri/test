@@ -43,10 +43,11 @@ function togglePopin(tabid){
 			chrome.tabs.executeScript(null,{file:"js/testJquery.js"});
 			chrome.tabs.insertCSS(null,{file: 'css/popin.css'});
 			injected[currentTab]=true;
+		}else{
+			chrome.tabs.executeScript(tabid,{code:"var closePopin=false;var popinPath=\""+popinPath+"\";"},function(){
+				chrome.tabs.executeScript(tabid,{file: "js/popin.js"});
+			});
 		}
-		chrome.tabs.executeScript(tabid,{code:"var closePopin=false;var popinPath=\""+popinPath+"\";"},function(){
-			chrome.tabs.executeScript(tabid,{file: "js/popin.js"});
-		});
 	}else{
 		chrome.tabs.executeScript(tabid,{code:"var closePopin=true;"},function(){
 			chrome.tabs.executeScript(tabid,{file: "js/popin.js"});
@@ -63,6 +64,12 @@ function injectJquery(){
 }
 
 function injectJqueryui(){
-	chrome.tabs.executeScript(null,{file: "js/jquery-ui.min.js"});
 	chrome.tabs.insertCSS(null,{file: 'css/jquery-ui.min.css'});
+	chrome.tabs.executeScript(null,{file: "js/jquery-ui.min.js"},function(){
+		chrome.tabs.executeScript(tabid,{code:"var closePopin=false;var popinPath=\""+popinPath+"\";"},function(){
+			chrome.tabs.executeScript(tabid,{file: "js/popin.js"},function(){
+				chrome.tabs.executeScript(tabid,{file: "js/functions.js"});
+			});
+		});
+	});
 }
