@@ -42,6 +42,7 @@ background: url("chrome-extension://__MSG_@@extension_id__/img/right.png");
   margin:5px;
   width:10px;
   height:10px;
+  position: relative;
 }
 
 .popin__screen{
@@ -72,6 +73,15 @@ background: url("chrome-extension://__MSG_@@extension_id__/img/right.png");
 .popin__resizer--br{
   bottom:-3px;
   right:-3px;
+}
+
+.popin__movebar{
+  width: 100%;
+  position: relative;
+  height: 10%;
+  background: #08f;
+  top: -10%;
+  float: left;
 }
 
 .ui-slider{
