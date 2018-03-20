@@ -3,7 +3,6 @@ var resize=false;
 var move=false;
 var resize="";
 var popinSize={};
-var d= {};
 
 if($("#popin").length<1 && !closePopin){
   $("body").append("<div id='popin'></div>");
@@ -14,13 +13,7 @@ if($("#popin").length<1 && !closePopin){
 
 function main(){
 
-
-  popinSize.width=$("#popin").width();
-  popinSize.height=$("#popin").height();
-  popinSize.left=parseInt($("#popin").css("left").replace("px",""));
-  popinSize.right=parseInt($("#popin").css("right").replace("px",""));
-  popinSize.top=parseInt($("#popin").css("top").replace("px",""));
-  popinSize.bottom=parseInt($("#popin").css("bottom").replace("px",""));
+  loadPopin();
 
   $("#popin").draggable({disabled: true});
   $("#popin").resizable({
@@ -54,6 +47,27 @@ function endEvents(){
   if(move){
     dragOff();
   }
+  if(resize){
+    savePopin();
+  }
+}
+
+function savePopin(){
+  popinSize.top=$("#popin").css("top");
+  popinSize.left=$("#popin").css("left");
+  popinSize.width=$("#popin").css("width");
+  popinSize.height=$("#popin").css("height");
+  popinSize.opacity=$("#popin").css("opacity");
+  save();
+}
+
+function loadPopin(){
+  load();
+  $("#popin").css("top",popinSize.top);
+  $("#popin").css("left",popinSize.left);
+  $("#popin").css("width",popinSize.width);
+  $("#popin").css("height",popinSize.height);
+  $("#popin").css("opacity",popinSize.opacity);
 }
 
 function opacity(ui){
@@ -61,6 +75,11 @@ function opacity(ui){
 }
 
 function toggleMove(){
+  if(resize){
+    resize=false;
+  }else{
+    resize=true;
+  }
   if($(".popin__resizer").css("display")=="none"){
     $(".popin__button").css("top","0%");
   }else{
@@ -103,3 +122,22 @@ $('body').on('mousewheel', function(event) {
     $( ".popin__slider" ).slider("value", val);
   }
 });
+
+
+function save(){
+	localStorage.setItem("datas",JSON.stringify(popinSize));
+}
+
+function load(){
+	var tmp = localStorage.getItem("datas");
+	if (!isNull(tmp)){
+		popinSize = JSON.parse(tmp);
+	}
+}
+
+function isNull(o){
+  if(o == null || o == "" || o == undefined){
+    return true;
+  }
+  return false;
+}

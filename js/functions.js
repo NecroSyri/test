@@ -1,10 +1,10 @@
 function save(){
-	localStorage.setItem("datas",JSON.stringify(d));
+	localStorage.setItem("datas",JSON.stringify(popinSize));
 }
 
 function load(){
 	var tmp = localStorage.getItem("datas");
 	if (!isNull(tmp)){
-		d = JSON.parse(tmp);
+		popinSize = JSON.parse(tmp);
 	}
 }

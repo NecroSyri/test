@@ -67,8 +67,8 @@ function injectJqueryui(){
 	chrome.tabs.insertCSS(null,{file: 'css/jquery-ui.min.css'});
 	chrome.tabs.executeScript(null,{file: "js/jquery-ui.min.js"},function(){
 		chrome.tabs.executeScript(tabid,{code:"var closePopin=false;var popinPath=\""+popinPath+"\";"},function(){
-			chrome.tabs.executeScript(tabid,{file: "js/popin.js"},function(){
-				chrome.tabs.executeScript(tabid,{file: "js/functions.js"});
+			chrome.tabs.executeScript(tabid,{file: "js/functions.js"},function(){
+				chrome.tabs.executeScript(tabid,{file: "js/popin.js"});
 			});
 		});
 	});
