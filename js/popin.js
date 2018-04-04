@@ -1,3 +1,4 @@
+/* OLD
 var mouse={};
 var resize=false;
 var move=false;
@@ -141,3 +142,4 @@ function isNull(o){
   }
   return false;
 }
+*/
