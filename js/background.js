@@ -2,6 +2,8 @@
 var currentTab;
 var popinTab;
 var injected = [];
+// Get extension path of popin.html
+var popinPath = chrome.runtime.getURL("pages/popin.html");
 
 // LISTENERS
 // Commands - hotkey
@@ -48,8 +50,6 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
 	@parameter {string} tabid - ID of the tab where to toggle popin
 */
 function togglePopin(tabid){
-	// Get extension path of popin.html
-	var popinPath = chrome.runtime.getURL("pages/popin.html");
 	// If !tab,
 	if(tabid == null || tabid == undefined){
 		popinTab = currentTab;
@@ -72,7 +72,6 @@ function togglePopin(tabid){
 
 
 function injectJquery(){
-	console.log("injected");
 	chrome.tabs.executeScript(null,{file: "js/jquery-3.2.1.min.js"},function(){
 		chrome.tabs.executeScript(null,{file:"js/testJquery.js"});
 	});
@@ -81,9 +80,9 @@ function injectJquery(){
 function injectJqueryui(){
 	chrome.tabs.insertCSS(null,{file: 'css/jquery-ui.min.css'});
 	chrome.tabs.executeScript(null,{file: "js/jquery-ui.min.js"},function(){
-		chrome.tabs.executeScript(tabid,{code:"var closePopin=false;var popinPath=\""+popinPath+"\";"},function(){
-			chrome.tabs.executeScript(tabid,{file: "js/functions.js"},function(){
-				chrome.tabs.executeScript(tabid,{file: "js/popin.js"});
+		chrome.tabs.executeScript(currentTab,{code:"var closePopin=false;var popinPath=\""+popinPath+"\";"},function(){
+			chrome.tabs.executeScript(currentTab,{file: "js/functions.js"},function(){
+				chrome.tabs.executeScript(currentTab,{file: "js/popin.js"});
 			});
 		});
 	});
