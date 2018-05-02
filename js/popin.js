@@ -1,3 +1,14 @@
+if($("#popin").length<1 && !closePopin){
+  $("body").append("<div id='popin'></div>");
+  $("#popin").load(popinPath,function(){main();});
+}else{
+  $("#popin").remove();
+}
+
+function main(){
+
+}
+
 /* OLD
 var mouse={};
 var resize=false;
