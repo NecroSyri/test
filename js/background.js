@@ -50,7 +50,7 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
 function togglePopin(tabid){
 	// Get extension path of popin.html
 	var popinPath = chrome.runtime.getURL("pages/popin.html");
-	// If !tab, 
+	// If !tab,
 	if(tabid == null || tabid == undefined){
 		popinTab = currentTab;
 		if(injected[currentTab]!=true){
@@ -58,8 +58,8 @@ function togglePopin(tabid){
 			chrome.tabs.insertCSS(null,{file: 'css/popin.css'});
 			injected[currentTab]=true;
 		}else{
-			chrome.tabs.executeScript(tabid,{code:"var closePopin=false;var popinPath=\""+popinPath+"\";"},function(){
-				chrome.tabs.executeScript(tabid,{file: "js/popin.js"});
+			chrome.tabs.executeScript(currentTab,{code:"var closePopin=false;var popinPath=\""+popinPath+"\";"},function(){
+				chrome.tabs.executeScript(currentTab,{file: "js/popin.js"});
 			});
 		}
 	}else{
@@ -69,8 +69,6 @@ function togglePopin(tabid){
 		popinTab=null;
 	}
 }
-
-/* OLD
 
 
 function injectJquery(){
@@ -90,4 +88,3 @@ function injectJqueryui(){
 		});
 	});
 }
-*/
