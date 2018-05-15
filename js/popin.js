@@ -1,3 +1,5 @@
+  var bg;
+
 if($("#popin").length<1 && !closePopin){
   $("body").append("<div id='popin'></div>");
   $("#popin").load(popinPath,function(){main();});
@@ -6,7 +8,7 @@ if($("#popin").length<1 && !closePopin){
 }
 
 function main(){
-
+  bg = chrome.extension.getBackgroundPage();
 }
 
 /* OLD

@@ -13,4 +13,15 @@ background: url("chrome-extension://__MSG_@@extension_id__/img/right.png");
   width : 100px;
   border : 1px solid;
   border-color : #000;
+  background : #fff;
+}
+
+.popin__button{
+  background: #ccc;
+  width: 10px;
+  height: 10px;
+  float: right;
+  margin: 5px;
+  text-align: center;
+  vertical-align: middle;
 }

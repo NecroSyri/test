@@ -70,7 +70,6 @@ function togglePopin(tabid){
 	}
 }
 
-
 function injectJquery(){
 	chrome.tabs.executeScript(null,{file: "js/jquery-3.2.1.min.js"},function(){
 		chrome.tabs.executeScript(null,{file:"js/testJquery.js"});
