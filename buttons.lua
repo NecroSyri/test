@@ -30,3 +30,13 @@ self.createButton(button)
 //xpnext inp
 //hp inp
 //hpmax inp
+
+
+
+--[[
+ALGO
+  get all objects
+  add button to all objects
+  clic button select object as target
+  display infos of first button/input
+--]]
