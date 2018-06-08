@@ -1,3 +1,4 @@
+--[[
 tabScriptZones={}
 hiddenZone
 slots = 6
@@ -32,4 +33,41 @@ shoot
 		currentSlot++
 	end
 	grab items from tabScriptZones[currentSlot]
+end
+]]--
+buttonRoll={}
+buttonReload={}
+buttonShoot={}
+
+scriptZones = {}
+hiddenZone = false
+slots = 6
+currentSlot = 0
+
+function onLoad(save_state)
+	self.createButton(buttonRoll)
+	self.createButton(buttonReload)
+	self.createButton(buttonShoot)
+
+	--remove zones
+	scriptZones = {}
+	hiddenZone = false
+end
+
+function roll()
+	currentSlot = math.random(slots)
+end
+
+function reload()
+	currentSlot = 0
+	--remove zones
+	scriptZones = {}
+	hiddenZone = false
+end
+
+function shoot()
+end
+
+function onPickUp(player_color)
+	self.setColorTint(player_color)
 end
