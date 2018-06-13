@@ -1,0 +1,12 @@
+On press :
+Check if everything injected
+Yes
+  open 
+end yes
+No :
+  Inject jquery
+    Callback inject bootstrap
+      callback inject scripts
+        callback inject functions
+          callback inject css
+end no

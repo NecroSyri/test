@@ -8,9 +8,13 @@ if($("#popin").length<1 && !closePopin){
 }
 
 function main(){
-  //bg = chrome.extension.getBackgroundPage();
+  bg = chrome.extension.getBackgroundPage();
   document.activeElement.blur(); // remove focus
 }
+
+$(window).bind('beforeunload', function(){
+  bg.unInject();
+});
 
 /* OLD
 var mouse={};

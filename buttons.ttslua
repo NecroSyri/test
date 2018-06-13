@@ -1,39 +1,11 @@
 --[[
-tabScriptZones={}
-hiddenZone
-slots = 6
-currentSlot = 0
+	Globalize
+	-
+	5h
+	gb - +1p/** s - +xp/** s -x*3p/! s rezable
+	dw - +2p/! s - / +1p/! e -2p/hit s/e
+	hu - +1b/ha / 
 
-onPickup
-	teint = playerColor
-end
-
-reload
-	supprime HiddenZone
-	supprime scriptzones
-	currentSlot = 0
-end
-
-roll
-	supprime HiddenZone
-
-	create Hiddenzone
-	hiddenZone = guid
-
-	create scriptzones
-	tab.push guid
-
-	currentSlot = random 1-slots
-end
-
-shoot
-	if currentSlot+1 > slots
-		currentSlot = 1
-	else
-		currentSlot++
-	end
-	grab items from tabScriptZones[currentSlot]
-end
 ]]--
 buttonRoll={}
 buttonReload={}
